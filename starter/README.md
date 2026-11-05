@@ -1,9 +1,12 @@
 <p align="center"><img src="../media/LogoFull.svg" alt="Hunar.ai" height="40"></p>
 
-<h1 align="center">Hunar.ai — AI Engineer Assignment: Starter UI (optional)</h1>
+<h1 align="center">AI Engineer Assignment: Starter UI (optional)</h1>
 
 **Start with [the assignment brief](../README.md)**: it describes what to build, what to submit and how it is evaluated. A [demo video](../media/demo.mp4) shows the starter's scripted flow; `?demo=1` reproduces it locally (see below).
 
+<p align="center"><img src="../media/demo.gif" alt="Starter UI demo: a voice call and chat collecting a claim, ending in the final record"></p>
+
+> [!CAUTION]
 > **Strict requirement:** never expose secrets (API keys, tokens, credentials) to the browser or commit them to the repository. If the browser talks to a provider directly, use short-lived, scoped credentials issued by your server. See [the brief](../README.md).
 
 ## Running it
@@ -21,7 +24,7 @@ npm run dev
 Open the printed URL.
 
 - **Demo:** `/?demo=1` runs a scripted agent in the browser (add `&pace=0.75` to run it twice as fast).
-- **Your backend:** copy `.env.example` to `.env.local`, set `VITE_SERVER_URL` (e.g. `http://localhost:8080`) and restart `npm run dev`. Sockets go to `ws://<server>/call` and `ws://<server>/chat`; uploads go to `http://<server>/sessions/<id>/files`. Add `?sessionId=demo-1` to pick the session id (one is generated otherwise). `VITE_*` values are inlined into the page, so never put a secret there.
+- **Your backend:** copy `.env.example` to `.env.local`, set `VITE_SERVER_URL` (e.g. `http://localhost:8080`) and restart `npm run dev`. Sockets go to `ws://<server>/call` and `ws://<server>/chat`; uploads go to `http://<server>/sessions/<id>/files`. Add `?sessionId=demo-1` to pick the session id (one is generated otherwise). `VITE_`* values are inlined into the page, so never put a secret there.
 - **The contract:** every message type and field is in [`src/protocol/`](src/protocol/), all camelCase (`inputRequest`, `requestId`, ...). Change it freely on both sides.
 - `npm run build` type-checks and builds to `dist/`; `npm run preview` serves the build.
 - Target browsers: recent Chrome and Safari. Use headphones; browser echo cancellation is best-effort.

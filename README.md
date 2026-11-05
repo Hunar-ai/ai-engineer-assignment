@@ -1,6 +1,6 @@
 <p align="center"><img src="media/LogoFull.svg" alt="Hunar.ai" height="40"></p>
 
-<h1 align="center">Hunar.ai — AI Engineer Assignment: Voice + Chat Agent</h1>
+<h1 align="center">AI Engineer Assignment: Voice + Chat Agent</h1>
 
 ## Overview
 
@@ -11,11 +11,12 @@ Build an AI agent that helps a user complete a task across two channels:
 
 The conversation starts on a call. Some information is easy to give by talking; some is easier to type or upload. Your agent should move between the two naturally: ask for things in chat during the call, notice when they arrive, and follow up if something is still missing.
 
-**How to use this repository: it is reference material only.** Copy or download what you need (such as the starter UI) into your own repository. Please do not fork it to send pull requests, and do not open issues or pull requests against it.
+**How to use this repository: it is reference material only.** Copy or download what you need (such as the starter UI) into your own repository. Please do not fork it to send pull requests, and do not open issues or pull requests against it. Proprietary — see [LICENSE](LICENSE).
 
 Use any tools you like, including AI coding assistants. You may use any language, framework, library, platform or architecture for the call, the chat, the agent, storage and anything else.
 
-> **Strict requirement: never leak secrets.** Use your own API keys. No secret (API key, token or other credential) may ever be exposed to the browser or committed to the repository. If the browser connects to a model or voice provider directly, it must use short-lived, scoped credentials issued by your server (for example, ephemeral tokens), never long-lived keys.
+> [!CAUTION]
+> **Strict requirement:** never expose secrets (API keys, tokens, credentials) to the browser or commit them to the repository. If the browser talks to a provider directly, use short-lived, scoped credentials issued by your server.
 
 ## The goal
 
@@ -57,19 +58,13 @@ In your README, explain your stack choice in 150 words or fewer, including what 
 ## Must-haves
 
 1. **Web voice call.** A browser page where the user talks to the agent. The user must be able to interrupt the agent while it's speaking. The UI shows a best-effort live transcript of the call (both sides), so the user can follow what's going on alongside the chat inputs.
-
 2. **Web chat.** A chat page tied to the same session as the call, where the agent sends messages and requests inputs (text values, choices, files) one at a time, and the user fills each one in and submits it.
-
 3. **One conversation, two channels.** Both channels share the same state.
    - If the user submits something in chat while on the call, the call agent should know about it and acknowledge it at a natural moment.
    - If the call ends, the chat continues from where things left off.
-
 4. **Produce the final record.** When a session reaches an end state, produce a single sanitized, structured record and deliver it (see [The final record](#the-final-record)). Its exact shape and format are up to you.
-
 5. **Survives a restart.** Restarting your server must not lose sessions or collected data, and must not produce the final record twice.
-
 6. **No leaked secrets.** No API keys, tokens or credentials in the browser or the repository (see the strict requirement in the overview). This applies to your deployment too: keep keys in server-side environment variables or a secret store.
-
 7. **Deployed.** Reviewers won't run your code locally. Deploy your system at a public HTTPS URL (browsers only allow microphone access over HTTPS) that we can open and use, and keep it up through the review and interview period. Any host is fine, and free tiers are OK. Since the URL is public, you may cap usage or spend (for example, with a rate limit).
 
 No visual polish or authentication is needed.
@@ -77,16 +72,14 @@ No visual polish or authentication is needed.
 ## The final record
 
 1. **Define the record's shape.** You decide which fields your scenario's record contains, how each one is represented and the overall format. It doesn't need to match the example below or what the starter UI and its demo show; those are only illustrations. A JSON Schema (or equivalent) in your README is welcome.
-
 2. **Deliver the record.** Delivery is deliberately simple. POST the record to a sample endpoint of your choice (for example, a stub you host or a request-bin style URL), or just log it to the console.
-
 3. **Decide the outcome for every case.** At minimum:
    - `completed`: all required fields collected and valid
    - `partial`: the user stopped engaging (for example, they left or never came back) with required fields still missing or invalid
    - `optedOut`: the user explicitly asked to stop
    - `needsReview`: something your system shouldn't decide on its own (you define when)
 
-   Document when each one is triggered, and what happens if the session changes after the record was produced (for example, a `partial` user comes back and finishes, and you produce a new `revision`).
+    Document when each one is triggered, and what happens if the session changes after the record was produced (for example, a `partial` user comes back and finishes, and you produce a new `revision`).
 
 Example record (illustrative only):
 
@@ -133,7 +126,7 @@ Only attempt these once the must-haves work. They are only credited if done well
 
 ## Optional starter UI
 
-[![Starter UI demo: a voice call and chat collecting a claim, ending in the final record](media/demo.gif)](media/demo.mp4)
+![Starter UI demo: a voice call and chat collecting a claim, ending in the final record](media/demo.gif)
 
 *The optional starter UI running its scripted demo (about 2 min, no audio). Click for the full-quality video.*
 
